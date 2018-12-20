@@ -1,0 +1,142 @@
+@charset "utf-8";
+
+// 全局变量
+$fontFamily: "-apple-system", "SF UI Text", "Arial", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", "sans-serif";
+$fontNor: 14px;
+$font12: 12px;
+$font14: 14px;
+$font16: 16px;
+$font18: 18px;
+$font20: 20px;
+$blue: #009af5;
+$link: #5997f1;
+
+// 输出三角符号
+// 参数：角度、宽度、高度、颜色
+@mixin setHorn($horn, $w, $h, $c) {
+    content: "";
+    width: 0;
+    height: 0;
+    font-size: 0;
+    @if $horn == left {
+        border-right: $w solid $c;
+        border-top: #{( $h / 2 )} solid transparent;
+        border-bottom: #{( $h / 2 )} solid transparent;
+    } @else if $horn == top {
+        border-left: #{( $w / 2 )} solid transparent;
+        border-right: #{( $w / 2 )} solid transparent;
+        border-bottom: $h solid $c;
+    } @else if $horn == right {
+        border-left: $w solid $c;
+        border-top: #{( $h / 2 )} solid transparent;
+        border-bottom: #{( $h / 2 )} solid transparent;
+    } @else if $horn == bottom {
+        border-left: #{( $w / 2 )} solid transparent;
+        border-right: #{( $w / 2 )} solid transparent;
+        border-top: $h solid $c;
+    } @else if $horn == leftTop {
+        border-left: $w solid $c;
+        border-bottom: $h solid transparent;
+    } @else if $horn == leftBottom {
+        border-left: $w solid $c;
+        border-top: $h solid transparent;
+    } @else if $horn == rightTop {
+        border-right: $w solid $c;
+        border-bottom: $h solid transparent;
+    } @else if $horn == rightBottom {
+        border-right: $w solid $c;
+        border-top: $h solid transparent;
+    }
+    overflow: hidden;
+}
+
+// 多行于单行省略号
+@mixin setShowLine($n) {
+    @if $n == 1 {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    } @else {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: $n;
+        overflow: hidden;
+    }
+}
+
+// 伪元素清浮动
+@mixin getClear() {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    clear: both;
+    overflow: hidden;
+    z-index: -999;
+}
+
+// 绝对定位居中显示
+@mixin middle() {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+}
+
+// 绘制伪元素
+@mixin creatEl() {
+    content: "";
+    display: block;
+    position: absolute;
+}
+
+// 创建一个放置背景的伪元素
+@mixin layBg() {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+// 设置块级以及定位
+// 垂直居中
+@mixin setBpt(){
+    display: block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+}
+@mixin setPt(){
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+}
+// 水平垂直居中
+@mixin setBpm(){
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+}
+@mixin setPm(){
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+}
+// 高宽
+@mixin setWh($w,$h){
+    width: $w + px;
+    height: $h +px;
+}
